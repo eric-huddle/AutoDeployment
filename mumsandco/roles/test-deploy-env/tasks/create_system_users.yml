@@ -1,0 +1,23 @@
+---
+- name: add a group webapps
+  become: yes
+  group:
+    name: webapps
+    state: present  
+- name: create users
+  become: yes
+  user:
+    name: vagrant
+    groups: "webapps"
+    append: yes
+    state: present
+
+- name: copy .bashrc template to ~/.bashrc
+  become: yes
+  copy:
+    src: files/.bashrc
+    dest: "{{test_user_home}}/.bashrc"
+    owner: "{{test_user}}"
+    group: "{{test_user}}"
+
+

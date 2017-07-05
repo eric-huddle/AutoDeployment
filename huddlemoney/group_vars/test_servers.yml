@@ -1,0 +1,26 @@
+---
+ansible_connection: ssh   
+ansible_user: vagrant   
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+
+# config git repo
+git_repo: git@github.com:eric-huddle/huddlemoney.git
+
+# config git repo branch to checkout
+git_repo_branch: release
+
+# config vagrant home directory
+vagrant_home_dir: /Users/ericwang/vagrant/testdeploy
+
+# define test username (Do not modify it when deploy test environment)
+test_user: vagrant
+test_user_home: /home/vagrant
+
+# config the code destination folder
+git_code_dest: "{{test_user_home}}/{{git_repo_branch}}"
+
+# config test database
+test_db_name: huddlemoneytestdb
+test_db_user: huddlemoney-test-db-user
+test_db_passwd: huddle123

@@ -1,0 +1,27 @@
+---
+- name: install gulp-cli globally
+  become: yes
+  shell: "npm -g install gulp-cli"
+
+- name: bower install
+  become: yes
+  become_user: "{{test_user}}"
+  shell: "source `which virtualenvwrapper.sh` && cd ~/current && workon current && add2virtualenv backend && bower install"
+  args:
+    executable: /bin/bash
+
+- name: npm install
+  become: yes
+  become_user: "{{test_user}}"
+  shell: "source `which virtualenvwrapper.sh` && cd ~/current && workon current && add2virtualenv backend && npm install"
+  args:
+    executable: /bin/bash
+
+- name: gulp build
+  become: yes
+  become_user: "{{test_user}}"
+  shell: "source `which virtualenvwrapper.sh` && cd ~/current && workon current && add2virtualenv backend && gulp build"
+  args:
+    executable: /bin/bash
+
+

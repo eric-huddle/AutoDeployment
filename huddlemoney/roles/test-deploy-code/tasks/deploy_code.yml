@@ -1,0 +1,63 @@
+---
+
+- name: get code from git to vagrant
+  git:
+    repo: "{{git_repo}}"
+    dest: "{{git_code_dest}}"
+    version: "{{git_repo_branch}}"
+    ssh_opts: "-o StrictHostKeyChecking=no"
+
+- name: link the code folder to ~/current
+  become: yes
+  become_user: "{{test_user}}"
+  file: 
+    src: "{{test_user_home}}/{{git_repo_branch}}"
+    dest: "{{test_user_home}}/current"
+    state: link
+
+- name: make a folder media
+  become: yes
+  become_user: "{{test_user}}"
+  file:
+    path: "{{test_user_home}}/{{git_repo_branch}}/media"
+    state: directory
+
+- name: link folder media to ~/media 
+  become: yes
+  become_user: "{{test_user}}"
+  file: 
+    src: "{{test_user_home}}/{{git_repo_branch}}/media"
+    dest: "{{test_user_home}}/media"
+    state: link
+
+- name: make a folder static
+  become: yes
+  become_user: "{{test_user}}"
+  file:
+    path: "{{test_user_home}}/{{git_repo_branch}}/static"
+    state: directory
+
+- name: link folder media to ~/media 
+  become: yes
+  become_user: "{{test_user}}"
+  file: 
+    src: "{{test_user_home}}/{{git_repo_branch}}/static"
+    dest: "{{test_user_home}}/static"
+    state: link
+
+- name: clear backend/settings folder
+  become: yes
+  become_user: "{{test_user}}"
+  file: 
+    path: "{{test_user_home}}/{{git_repo_branch}}/backend/settings"
+    state: absent
+
+- name: copy settings folder into backend/settings 
+  become: yes
+  become_user: "{{test_user}}"
+  copy:
+    src: files/settings
+    dest: "{{test_user_home}}/{{git_repo_branch}}/backend"
+
+
+

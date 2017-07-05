@@ -1,0 +1,10 @@
+---
+- name: Deploy test server
+  hosts: test_servers
+  roles: 
+    - test-deploy-env
+    - test-deploy-code
+
+
+
+

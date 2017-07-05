@@ -1,0 +1,28 @@
+---
+
+- name: copy local.py to ~/current/backend/settings/local.py
+  become: yes
+  copy:
+    src: files/local.py
+    dest: "{{test_user_home}}/current/backend/settings/local.py"
+    owner: "{{test_user}}"
+    group: "{{test_user}}"
+
+- name: manage.py migrate
+  become: yes
+  become_user: "{{test_user}}"
+  shell: "source `which virtualenvwrapper.sh` && cd ~/current && workon current && add2virtualenv backend && {{test_user_home}}/current/manage.py migrate"
+  args:
+    executable: /bin/bash
+
+- name: manage.py loaddata
+  become: yes
+  become_user: "{{test_user}}"
+  shell: "source `which virtualenvwrapper.sh` && cd ~/current && workon current && add2virtualenv backend && {{test_user_home}}/current/manage.py loaddata backend/fixtures/*.json"
+  args:
+    executable: /bin/bash
+
+
+
+
+

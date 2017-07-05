@@ -1,0 +1,6 @@
+---
+- include: clear_code_folder.yml
+- include: deploy_code.yml
+- include: migrate_and_import.yml
+- include: npm_and_bower.yml
+- include: start_uwsgi_nginx.yml

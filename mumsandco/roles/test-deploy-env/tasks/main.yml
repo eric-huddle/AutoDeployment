@@ -1,0 +1,7 @@
+---
+
+- include: create_system_users.yml
+- include: create_test_database.yml
+- include: setup_virtualenv.yml
+- include: deploy_uwsgi_nginx.yml
+

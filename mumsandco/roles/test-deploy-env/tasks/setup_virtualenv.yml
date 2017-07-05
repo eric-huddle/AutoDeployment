@@ -1,0 +1,36 @@
+---
+- name: copy .bashrc template to ~/.bashrc
+  become: yes
+  copy:
+    src: files/.bashrc
+    dest: "{{test_user_home}}/.bashrc"
+    owner: "{{test_user}}"
+    group: "{{test_user}}"
+
+- name: check whether .virtualenvs is exist
+  become: yes
+  become_user: "{{test_user}}"
+  command: "ls {{test_user_home}}/.virtualenvs"
+  register: result
+  ignore_errors: True
+
+- name: create the initial virtualenvs
+  become: yes
+  become_user: "{{test_user}}"
+  shell: "source `which virtualenvwrapper.sh` && mkvirtualenv current"
+  args:
+    executable: /bin/bash
+  when: result|failed
+
+- name: install requirements
+  become: yes
+  become_user: "{{test_user}}"
+  pip:
+    requirements: "{{test_user_home}}/current/requirements.txt"
+    virtualenv: "{{test_user_home}}/.virtualenvs/current"
+  when: result|failed
+
+
+
+
+

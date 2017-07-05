@@ -1,0 +1,30 @@
+---
+
+- name: stop nignx service 
+  become: yes
+  service:
+    name: nginx
+    state: stopped
+
+- name: check whether uwsgi process is running
+  become: yes
+  shell: "ps -ef|grep `cat /run/uwsgi-emperor.pid`|sed '/grep/d'"
+  args:
+    executable: /bin/bash
+  register: uwsgi_result
+  ignore_errors: True
+
+- name: stop uwsgi service
+  become: yes
+  shell: "kill -9 `cat /run/uwsgi-emperor.pid`"
+  args:
+    executable: /bin/bash
+  when: uwsgi_result.stdout != ""
+
+
+- name: delete code
+  become: yes
+  become_user: "{{test_user}}"
+  file:
+    path: "{{test_user_home}}/{{git_repo_branch}}"
+    state: absent

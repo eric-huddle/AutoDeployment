@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  vars:
+    # config git repo
+    git_repo: https://github.com/eric-huddle/huddlemoney.git
+    
+    # config git repo branch to get
+    git_repo_branch: release
+    
+    # config vagrant home directory
+    vagrant_home_dir: /Users/ericwang/vagrant/huddlemoney-test1
+    
+    # config the folder where the code in vagrant_home_dir
+    vagrant_code_dir: "{{ vagrant_home_dir }}/{{ git_repo_branch }}"
+    
+
+  tasks:
+  - name: get code from git to vagrant
+    git:
+      repo: "{{git_repo}}"
+      dest: "{{vagrant_code_dir}}"
+      version: "{{git_repo_branch}}"

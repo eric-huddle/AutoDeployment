@@ -1,0 +1,18 @@
+---
+- name: copy uwsgi config file to /etc/uwsgi-emperor/vassals/
+  become: yes
+  copy:
+    src: files/vassals
+    dest: "/etc/uwsgi-emperor/"
+
+- name: copy uwsgi ini file to /etc/uwsgi-emperor/
+  become: yes
+  copy:
+    src: files/emperor.ini
+    dest: "/etc/uwsgi-emperor/"
+
+- name: copy nginx config file to /etc/nginx/sites-enabled
+  become: yes
+  copy:
+    src: files/huddlemoneytesthttp.conf
+    dest: "/etc/nginx/sites-enabled"
