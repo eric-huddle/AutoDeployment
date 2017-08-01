@@ -21,7 +21,7 @@
   become: yes
     copy:
       src: files/uwsgi-init.d/uwsgi-emperor
-      dest: /etc/init.d/uwsgi-emperor
+      dest: "/etc/init.d/uwsgi-emperor"
       owner: root 
       group: root 
       mode: 0755
@@ -30,7 +30,7 @@
   become: yes
   copy:
     src: files/uwsgi-default/uwsgi-emperor
-    dest: /etc/default/uwsgi-emperor
+    dest: "/etc/default/uwsgi-emperor"
     owner: root 
     group: root 
     mode: 0640
