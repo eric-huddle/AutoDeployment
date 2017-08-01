@@ -23,5 +23,5 @@
 - name: start nginx service
   become: yes
   service:
-    name: nginx
+    name: uwsgi-emperor
     state: started

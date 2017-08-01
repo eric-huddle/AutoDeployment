@@ -38,6 +38,6 @@
 - name: enable uwsgi service
   become: yes
   service:
-    name: uwsgi 
+    name: uwsgi-emperor
     enabled: yes
 
