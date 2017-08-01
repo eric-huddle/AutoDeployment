@@ -19,12 +19,12 @@
 
 - name: install uwsgi init script
   become: yes
-    copy:
-      src: files/uwsgi-init.d/uwsgi-emperor
-      dest: "/etc/init.d/uwsgi-emperor"
-      owner: root 
-      group: root 
-      mode: 0755
+  copy:
+    src: files/uwsgi-init.d/uwsgi-emperor
+    dest: "/etc/init.d/uwsgi-emperor"
+    owner: root 
+    group: root 
+    mode: 0755
 
 - name: install uwsgi default config
   become: yes
