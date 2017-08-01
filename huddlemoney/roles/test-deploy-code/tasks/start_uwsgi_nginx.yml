@@ -1,18 +1,23 @@
 ---
-- name: check whether uwsgi process is running
-  become: yes
-  shell: "ps -ef|grep `cat /run/uwsgi-emperor.pid`|sed '/grep/d'"
-  args:
-    executable: /bin/bash
-  register: uwsgi_result
-  ignore_errors: True
+# - name: check whether uwsgi process is running
+  # become: yes
+  # shell: "ps -ef|grep `cat /run/uwsgi-emperor.pid`|sed '/grep/d'"
+  # args:
+    # executable: /bin/bash
+  # register: uwsgi_result
+  # ignore_errors: True
+# 
+# - name: start uwsgi service
+  # become: yes
+  # shell: "nohup /usr/local/bin/uwsgi --ini /etc/uwsgi-emperor/emperor.ini --pidfile /run/uwsgi-emperor.pid &"
+  # args:
+    # executable: /bin/bash
+  # when: uwsgi_result.stdout == ""
 
-- name: start uwsgi service
-  become: yes
-  shell: "nohup /usr/local/bin/uwsgi --ini /etc/uwsgi-emperor/emperor.ini --pidfile /run/uwsgi-emperor.pid &"
-  args:
-    executable: /bin/bash
-  when: uwsgi_result.stdout == ""
+- name: start uwsgi
+  service: 
+    name: uwsgi 
+    state: started
 
 - name: start nginx service
   become: yes

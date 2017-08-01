@@ -22,13 +22,13 @@
     executable: /bin/bash
   when: result|failed
 
-- name: install requirements
-  become: yes
-  become_user: "{{test_user}}"
-  pip:
-    requirements: "{{test_user_home}}/current/requirements.txt"
-    virtualenv: "{{test_user_home}}/.virtualenvs/current"
-  when: result|failed
+# - name: install requirements
+  # become: yes
+  # become_user: "{{test_user}}"
+  # pip:
+    # requirements: "{{test_user_home}}/current/requirements.txt"
+    # virtualenv: "{{test_user_home}}/.virtualenvs/current"
+  # when: result|failed
 
 
 

@@ -8,6 +8,8 @@ Version: latest
 [Installation guide](https://www.virtualbox.org/wiki/Downloads)
 Download *VirtualBox* installer and follow prompts to install.
 
+
+
 #### Ansible
 Version: v2.3.1.0
 
@@ -39,7 +41,7 @@ The template virtual boxes are those that have pre-installed some softwares like
 The description of these boxes are:
 Box Name | OS | PostgreSql | Node | Nodejs | NPM | UWSGI | Nginx |
 ---------|----|------------|------|--------|-----|-------|-------|
-abigdream/huddlemoney-test0 | 
+abigdream/huddlemoney-test0 | Ubuntu 16.04 Xenial | 9.5 |
 abigdream/huddlemoney-test1| Ubuntu 16.04 Xenial | 9.5 | 6.11.0 | 4.2.6 | 3.10.10| 2.0.15 | 1.10.0|
 
 **Run vagrant command to add virtual box into your machine. **
@@ -62,6 +64,17 @@ For example,
 $ cd ~/huddlemoney-test1
 $ vagrant init abigdream/huddlemoney-test1
 ```
+
+**Change the Virtual Box configuration.**
+Run VirtualBox Manager
+select [VM name]
+Settings
+'System' tab > Motherboard > Boor Order > [ ] Floppy (uncheck)
+'Audiot' tab > [ ] Enable Audio (uncheck)
+'Ports' tab > [ ] Enable Serial Port (uncheck)
+OK
+
+
 **Copy our code into your test environment home folder.**
 ```sh
 $ cp huddlemoney/ ~/huddlemoney-test1/

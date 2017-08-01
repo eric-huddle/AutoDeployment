@@ -16,3 +16,25 @@
   copy:
     src: files/huddlemoneytesthttp.conf
     dest: "/etc/nginx/sites-enabled"
+
+- name: install uwsgi init script
+    copy: 
+      src: files/uwsgi-init.d/uwsgi-emperor
+      dest: /etc/init.d/uwsgi-emperor
+      owner: root 
+      group: root 
+      mode: 0755
+
+- name: install uwsgi default config
+  copy: 
+    src: files/uwsgi-default/uwsgi-emperor
+    dest: /etc/default/uwsgi-emperor
+    owner: root 
+    group: root 
+    mode: 0640
+
+- name: enable uwsgi service
+  service: 
+    name: uwsgi 
+    enabled: yes
+

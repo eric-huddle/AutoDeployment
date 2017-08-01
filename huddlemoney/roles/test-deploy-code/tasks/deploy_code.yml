@@ -45,19 +45,23 @@
     dest: "{{test_user_home}}/static"
     state: link
 
-- name: clear backend/settings folder
+# - name: clear backend/settings folder
+  # become: yes
+  # become_user: "{{test_user}}"
+  # file: 
+    # path: "{{test_user_home}}/{{git_repo_branch}}/backend/settings"
+    # state: absent
+# 
+# - name: copy settings folder into backend/settings 
+  # become: yes
+  # become_user: "{{test_user}}"
+  # copy:
+    # src: files/settings
+    # dest: "{{test_user_home}}/{{git_repo_branch}}/backend"
+
+- name: install requirements
   become: yes
   become_user: "{{test_user}}"
-  file: 
-    path: "{{test_user_home}}/{{git_repo_branch}}/backend/settings"
-    state: absent
-
-- name: copy settings folder into backend/settings 
-  become: yes
-  become_user: "{{test_user}}"
-  copy:
-    src: files/settings
-    dest: "{{test_user_home}}/{{git_repo_branch}}/backend"
-
-
-
+  pip:
+    requirements: "{{test_user_home}}/current/requirements.txt"
+    virtualenv: "{{test_user_home}}/.virtualenvs/current"
