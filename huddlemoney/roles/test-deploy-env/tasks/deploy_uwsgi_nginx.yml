@@ -41,3 +41,12 @@
     name: uwsgi-emperor
     enabled: yes
 
+- name: create uwsgi log file
+  become: yes
+  file:
+    path: /var/log/uwsgi/emperor.log
+    owner: root
+    group: root
+    state: file
+    mode: 0644
+
