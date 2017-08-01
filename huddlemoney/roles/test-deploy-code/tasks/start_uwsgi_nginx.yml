@@ -15,6 +15,7 @@
   # when: uwsgi_result.stdout == ""
 
 - name: start uwsgi
+  become: yes
   service: 
     name: uwsgi 
     state: started
