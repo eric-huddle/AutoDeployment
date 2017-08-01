@@ -39,10 +39,10 @@ $ mkdir ~/huddlemoney-test1
 
 The template virtual boxes are those that have pre-installed some softwares like postgresql, node and so on.
 The description of these boxes are:
-Box Name | OS | PostgreSql | Node | Nodejs | NPM | UWSGI | Nginx |
----------|----|------------|------|--------|-----|-------|-------|
-abigdream/huddlemoney-test0 | Ubuntu 16.04 Xenial | 9.5 |
-abigdream/huddlemoney-test1| Ubuntu 16.04 Xenial | 9.5 | 6.11.0 | 4.2.6 | 3.10.10| 2.0.15 | 1.10.0|
+Box Name | OS | PostgreSql | Node | NPM | UWSGI | Nginx |
+---------|----|------------|------|-----|-------|-------|
+abigdream/huddlemoney-test0 | Ubuntu 16.04 Xenial | 9.5 | 4.2.6 | 3.5.2 | 2.0.15 | 1.10.3 |
+abigdream/huddlemoney-test1| Ubuntu 16.04 Xenial | 9.5 | 6.11.0 | 3.10.10 | 2.0.15 | 1.10.0 |
 
 **Run vagrant command to add virtual box into your machine. **
 For example,
