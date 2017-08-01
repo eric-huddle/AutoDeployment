@@ -17,11 +17,11 @@
 - name: start uwsgi
   become: yes
   service: 
-    name: uwsgi 
+    name: uwsgi-emperor 
     state: started
 
 - name: start nginx service
   become: yes
   service:
-    name: uwsgi-emperor
+    name: nginx
     state: started
